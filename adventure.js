@@ -8,6 +8,7 @@ let button1 = document.getElementById('button1')
 let button2 = document.getElementById('button2')
 let button3 = document.getElementById('button3')
 let inventoryItem = document.getElementById('inventoryItem')
+let fullscreenEnabled = "false"
 
 
 Main();
@@ -64,5 +65,23 @@ function options(){
     button2.style.left = "5%"
     button3.style.display = "none"
     button2.onclick = function(){Main()}
-    button1.onclick = function(){fullscreen()}
+    if (fullscreenEnabled == "true"){
+        button1.onclick = function(){exitFullscreen()}
+        veranderbuttonText("Uit Fullscreen", "Terug")
+    }
+    else if (fullscreenEnabled == "false"){
+        button1.onclick = function(){fullscreen()}
+        veranderbuttonText("Fullscreen", "Terug")
+    }
+}
+function fullscreen(){
+    game.requestFullscreen()
+    fullscreenEnabled = "true"
+    options()
+}
+
+function exitFullscreen(){
+    document.exitFullscreen()
+    fullscreenEnabled = "false"
+    options()
 }
