@@ -9,6 +9,7 @@ let button2 = document.getElementById('button2')
 let button3 = document.getElementById('button3')
 let inventoryItem = document.getElementById('inventoryItem')
 let fullscreenEnabled = "false"
+let inventoryItems = { "kleinesleutel" : false, "grotesleutel" : false}
 
 
 Main();
@@ -26,7 +27,7 @@ function Main(){
     button1.style.left = "45%"
     button2.style.left = "45%"
     button3.style.left = "45%"
-    button3.style.display = "Block"
+    button3.style.display = "none"
     button1.style.display = "block"
     button2.style.display = "block"
     inventoryItem.style.display = "none "
@@ -38,7 +39,7 @@ function verandertitel(titeltekst){
 }
 
 function veranderBackground(background){
-    game.style.background = "url('./images/" + background + ".png') no-repeat"
+    game.style.background = "url('./images/" + background + ".png') "
     game.style.backgroundSize = "100%"
 }
 function veranderbuttonText(buttonText1, buttonText2, buttonText3){
@@ -57,10 +58,19 @@ function start(){
     button1.style.left = "85%"
     button2.style.left = "85%"
     button3.style.left = "85%"
-    button3.onclick = function(){Main()}
+    button1.onclick = function(){links()}
+    button2.onclick = function(){rechts()}
+    veranderbuttonText("links", "rechts", "stop")
+    verandertitel("Level 1: het bos");
+    veranderBackground("bos");
+    veranderdescriptionText("Het bos ziet er prachtig uit, een aantal bomen naast een pad en wat stenen op de");
+    button3.style.display = "none"
 }
 function options(){
     veranderbuttonText("fullscreen", "Terug", "Stop")
+    verandertitel("Options");
+    veranderBackground("Main");
+    veranderdescriptionText("De instellingen van de game")
     button1.style.left = "5%"
     button2.style.left = "5%"
     button3.style.display = "none"
@@ -84,4 +94,42 @@ function exitFullscreen(){
     document.exitFullscreen()
     fullscreenEnabled = "false"
     options()
+}
+
+function links(){
+    button1.style.display = "block"
+    button2.style.display = "block"
+    button3.style.display = "block"
+    button1.onclick = function(){linkslinks()}
+    button2.onclick = function(){start()}
+    button3.onclick = function(){linksrechts()}
+    veranderbuttonText("links", "terug", "rechts")
+    verandertitel("Don't starve");
+    veranderBackground("bos");
+    veranderdescriptionText("Het bos ziet er prachtig uit, een aantal bomen naast een pad en wat stenen op de");
+}
+
+function rechts(){
+    button1.style.display = "block"
+    button2.style.display = "block"
+    button3.style.display = "block"
+    button1.onclick = function(){rechtslinks()}
+    button2.onclick = function(){start()}
+    button3.onclick = function(){rechtrechts()}
+    veranderbuttonText("links", "terug", "rechts")
+    verandertitel("Don't starve");
+    veranderBackground("bos");
+    veranderdescriptionText("Het bos ziet er prachtig uit, een aantal bomen naast een pad en wat stenen op de");
+}
+function linkslinks(){
+
+}
+function linksrechts(){
+
+}
+function rechtslinks(){
+
+}
+function rechtrechts(){
+
 }
