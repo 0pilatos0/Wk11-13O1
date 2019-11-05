@@ -36,7 +36,9 @@ html {
   }
   
   #inventoryItem {
-    width: 50px;
+    width: 200px;
+    border: 5px solid black;
+    background: white;
   }
   
   #title {

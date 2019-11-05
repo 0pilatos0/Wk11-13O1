@@ -20,6 +20,7 @@ let object;
 Main();
 
 function Main(){
+    console.log("(Game) Hoofdmenu")
     verandertitel("Hoofdmenu");
     veranderBackground("Main");
     veranderbuttonText("Start", "Opties", "Stop")
@@ -32,8 +33,7 @@ function Main(){
 }
 
 function Restart(){
-    inventoryItems = { "kleinesleutel" : false, "grotesleutel" : false}
-    Main();
+    location.reload();
 
 }
 
@@ -52,8 +52,11 @@ function VeranderObject(waarde1, waarde2, waarde3){
 function objectPickup(waarde1){
     inventoryItems = "true"
     object.style.display = "none"
-    console.log("item succesvol opgepakt" + waarde1)
+    console.log("(objects) item succesvol opgepakt" + waarde1)
+    inventoryItem.style.display = "block"
+    inventoryItem.innerHTML = "<br> Sleutel"
 }
+
 function objectdisplay(waarde1){
     object.style.display = waarde1
 }
@@ -145,6 +148,7 @@ function exitFullscreen(){
 }
 
 function options(){
+    console.log("(Game) Options")
     veranderbuttonText("fullscreen", "Terug", "Stop")
     verandertitel("Options");
     veranderBackground("Main");
@@ -163,11 +167,11 @@ function options(){
 }
 
 function start(){
-    
+    console.log("(Game) het bos")
     buttonstylehori("85%", "85%", "85%")
     buttondoorverwijzen(links, rechts, stop)
     veranderbuttonText("links", "rechts", "stop")
-    verandertitel("Level 1: het bos");
+    verandertitel("het bos");
     veranderBackground("bos");
     veranderdescriptionText("Het bos ziet er prachtig uit, een aantal bomen naast een pad en wat stenen op de");
     knoppendisplay("block", "block", "none");
@@ -176,64 +180,115 @@ function start(){
         Objectlocatie("absolute", "97%", "30%")
         itemsgespawned = "true"
     }
-    objectdisplay("block")
+    if(inventoryItems == "false"){
+        objectdisplay("block")
+    }
 }
 
 function links(){
+    console.log("(Game) Het kasteel")
     objectdisplay("none")
-    knoppendisplay("block", "block", "block");
-    buttondoorverwijzen(linkslinks, start, linksrechts)
-    veranderbuttonText("links", "terug", "rechts")
+    knoppendisplay("block", "block", "none");
+    buttondoorverwijzen(linkslinkspre, start, start)
+    veranderbuttonText("doorgaan", "terug", "rechts")
     verandertitel("Het kasteel");
     veranderBackground("kasteelgate");
     veranderdescriptionText("Je bent bij een kasteel aangekomen, de kasteelwachter roept dat je alleen door mag lopen indien je een sleutel hebt ");
 }
 
 function rechts(){
+    console.log("(Game) Game over")
     objectdisplay("none")
-    knoppendisplay("block", "block", "block");
-    buttondoorverwijzen(rechtslinks, start, rechtrechts)
-    veranderbuttonText("links", "terug", "rechts")
-    verandertitel("Don't starve");
-    veranderBackground("bos");
-    veranderdescriptionText("Het bos ziet er prachtig uit, een aantal bomen naast een pad en wat stenen op de");
+    knoppendisplay("block", "none", "none");
+    buttondoorverwijzen(Restart, start, start)
+    veranderbuttonText("Restart", "terug", "rechts")
+    verandertitel("Helaas game over!");
+    veranderBackground("dood");
+    veranderdescriptionText("Na een tijdje lopen ben je een groep wachters tegengekomen die je aan de galg hebben gehangen");
 }
 
-function linkslinks(){
+function linkslinkspre(){
     if(inventoryItems == "false"){
+        console.log("(Game) Death")
         knoppendisplay("block", "none", "none");
-        buttondoorverwijzen(Restart, start, linksrechts)
+        buttondoorverwijzen(Restart, start, start)
         veranderbuttonText("Restart", "terug", "rechts")
         verandertitel("Helaas game over!");
         veranderBackground("dood");
         veranderdescriptionText("Je was gewaarshuwd en de kasteelwachters hebben je laten hangen aan de galg");   
     }
     else{
-        knoppendisplay("block", "block", "block");
-        buttondoorverwijzen(linkslinks, start, linksrechts)
-        veranderbuttonText("links", "terug", "rechts")
-        verandertitel("Het kasteel");
-        veranderBackground("kasteelgate");
-        veranderdescriptionText("Je bent bij een kasteel aangekomen, de kasteelwachter roept dat je alleen door mag lopen indien je een sleutel hebt ");    
+        linklinks()
     }
     
 }
-
-
-function linksrechts(){
-
+function linklinks(){
+    console.log("(Game) De stad")
+    knoppendisplay("block", "block", "block");
+    buttondoorverwijzen(linkslinkslinks, links, linkslinksrechts)
+    veranderbuttonText("links", "terug", "rechts")
+    verandertitel("De stad");
+    veranderBackground("town");
+    veranderdescriptionText("Je bent binnen gekomen in de stad, het lijkt best wel heel erg rustig te zijn ");    
 }
-
-function rechtslinks(){
-
+function linkslinkslinks(){
+    console.log("(Game) Pleintje")
+    verandertitel("Pleintje");
+    veranderdescriptionText("Je bent op een rustigge plaats aangekomen, hier kan je een mooi bestaan opbouwen");
+    veranderbuttonText("mensen aanspreken", "terug", "inbreken")
+    veranderBackground("town2");
+    knoppendisplay("block", "block", "block");
+    buttondoorverwijzen(aanspreken, linkslinkspre, inbreken)
 }
-
-function rechtrechts(){
-
+function linkslinksrechts(){
+    console.log("(Game) De Guard")
+    verandertitel("De guard!");
+    veranderdescriptionText("Je bent tegen een stadswachter aangelopen, hij pakt zijn zwaard!");
+    veranderbuttonText("overgeven", "rennen", "richting")
+    veranderBackground("guard");
+    knoppendisplay("block", "block", "none");
+    buttondoorverwijzen(overgevenguard, linkslinksrechtsdoor, start)
+    console.log("debug")
+}
+function overgevenguard(){
+    console.log("(Game) Game over")
+    knoppendisplay("block", "none", "none");
+    buttondoorverwijzen(Restart, start, start)
+    veranderbuttonText("Restart", "terug", "rechts")
+    verandertitel("Helaas game over!");
+    veranderBackground("dood");
+    veranderdescriptionText("De kasteel wachter heeft je meegenomen en dezelde dag nog aan de galg gehangen");  
+}
+function linkslinksrechtsdoor(){
+    console.log("(Game) Victory")
+    verandertitel("Victory");
+    veranderdescriptionText("Je hebt kunnen ontsnappen aan de guard en je kan nu een bestaan opbouwen");
+    veranderbuttonText("Restart", "terug", "rechts")
+    veranderBackground("victory");
+    knoppendisplay("block", "none", "none");
+    buttondoorverwijzen(Restart, start, start)
+}
+function aanspreken(){
+    console.log("(Game) Game over")
+    knoppendisplay("block", "none", "none");
+    buttondoorverwijzen(Restart, start, start)
+    veranderbuttonText("Restart", "terug", "rechts")
+    verandertitel("Helaas game over!");
+    veranderBackground("dood");
+    veranderdescriptionText("De kasteel wachter heeft je gevonden en dezelde dag nog aan de galg gehangen");  
+}
+function inbreken(){
+    console.log("(Game) Game over")
+    knoppendisplay("block", "none", "none");
+    buttondoorverwijzen(Restart, start, start)
+    veranderbuttonText("Restart", "terug", "rechts")
+    verandertitel("Helaas game over!");
+    veranderBackground("dood");
+    veranderdescriptionText("De kasteel wachter heeft je gevonden en dezelde dag nog aan de galg gehangen");  
 }
 /* 
         level template
-    verandertitel("Levelnaam");
+        verandertitel("Levelnaam");
     veranderdescriptionText("levelbeschijving");
     veranderbuttonText("richting", "richting", "richting")
     veranderBackground("background naam");
