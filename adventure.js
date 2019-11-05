@@ -1,7 +1,6 @@
 // Paul van der Lei
 // Media- en Applicatieontwikkelaar leerjaar 1
 
-//het maken van alle variablen en uitlezen van informatie
 document.title = "Adventure Game"
 let buttons = document.getElementById('game-buttons')
 let button1 = document.getElementById('button1')
@@ -15,7 +14,7 @@ let fullscreenEnabled = "false"
 let inventoryItems = "false"
 let itemsgespawned = "false"
 let object;
-//Main function die bij het opstarten de layout van het level bepaalt en daarmee aanpast
+
 
 Main();
 
@@ -31,12 +30,10 @@ function Main(){
     knoppendisplay("block", "block", "none");
     inventoryitemdisplay("none")
 }
-
 function Restart(){
     location.reload();
 
 }
-
 function VeranderObject(waarde1, waarde2, waarde3){
         let img = document.createElement('img')
         img.id = "Object"
@@ -48,7 +45,6 @@ function VeranderObject(waarde1, waarde2, waarde3){
         object = document.getElementById('Object')
         console.log("(objects)" + waarde1 + " gespawnd")
 }
-
 function objectPickup(waarde1){
     inventoryItems = "true"
     object.style.display = "none"
@@ -56,97 +52,79 @@ function objectPickup(waarde1){
     inventoryItem.style.display = "block"
     inventoryItem.innerHTML = "<br> Sleutel"
 }
-
 function objectdisplay(waarde1){
     object.style.display = waarde1
 }
-
 function Objectlocatie(waarde1, waarde2, waarde3){
     VeranderObjectPosition(waarde1)
     VeranderObjectverti(waarde2)
     VeranderObjecthori(waarde3)
 }
-
 function VeranderObjectPosition(waarde1){
     object.style.position = waarde1
 }
-
 function VeranderObjectverti(waarde1){
     object.style.top = waarde1
 }
-
 function VeranderObjecthori(waarde1){
     object.style.left = waarde1
 }
-
 function inventoryitemdisplay(waarde1){
     inventoryItem.style.display = waarde1
 }
-
 function buttonstylehori(waarde1, waarde2, waarde3){
     button1.style.left = waarde1
     button2.style.left = waarde2
     button3.style.left = waarde3
 }
-
 function buttonstyleverti(waarde1, waarde2, waarde3){
     button1.style.top = waarde1
     button2.style.top = waarde2
     button3.style.top = waarde3
 }
-
 function buttondoorverwijzen(waarde1, waarde2, waarde3){
     button1.onclick = function(){waarde1()}
     button2.onclick = function(){waarde2()}
     button3.onclick = function(){waarde3()}
 }
-
 function buttonposition(waarde1, waarde2, waarde3){
     button1.style.position = waarde1
     button2.style.position = waarde2
     button3.style.position = waarde3
 }
-
 function knoppendisplay(waarde1, waarde2, waarde3){
     button1.style.display = waarde1
     button2.style.display = waarde2
     button3.style.display = waarde3
 }
-
 function verandertitel(titeltekst){
     title.innerHTML = titeltekst
     title.style.backgroundColor = "rgba(255,255,255,0.5)";
 }
-
 function veranderBackground(background){
     game.style.background = "url('./images/" + background + ".png') "
     game.style.backgroundSize = "100%"
 }
-
 function veranderbuttonText(waarde1, waarde2, waarde3){
     button1.innerHTML = waarde1
     button2.innerHTML = waarde2
     button3.innerHTML = waarde3
 }
-
 function veranderdescriptionText(descriptiontekst){
     description.innerHTML = descriptiontekst
     description.style.backgroundColor = "rgba(255,255,255,0.5)";
 }
-
 function fullscreen(){
     game.requestFullscreen()
     fullscreenEnabled = "true"
     options()
 }
-
 function exitFullscreen(){
 
     document.exitFullscreen()
     fullscreenEnabled = "false"
     options()
 }
-
 function options(){
     console.log("(Game) Options")
     veranderbuttonText("fullscreen", "Terug", "Stop")
@@ -165,7 +143,6 @@ function options(){
         veranderbuttonText("Fullscreen", "Terug")
     }
 }
-
 function start(){
     console.log("(Game) het bos")
     buttonstylehori("85%", "85%", "85%")
@@ -184,7 +161,6 @@ function start(){
         objectdisplay("block")
     }
 }
-
 function links(){
     console.log("(Game) Het kasteel")
     objectdisplay("none")
@@ -195,7 +171,6 @@ function links(){
     veranderBackground("kasteelgate");
     veranderdescriptionText("Je bent bij een kasteel aangekomen, de kasteelwachter roept dat je alleen door mag lopen indien je een sleutel hebt ");
 }
-
 function rechts(){
     console.log("(Game) Game over")
     objectdisplay("none")
@@ -206,7 +181,6 @@ function rechts(){
     veranderBackground("dood");
     veranderdescriptionText("Na een tijdje lopen ben je een groep wachters tegengekomen die je aan de galg hebben gehangen");
 }
-
 function linkslinkspre(){
     if(inventoryItems == "false"){
         console.log("(Game) Death")
