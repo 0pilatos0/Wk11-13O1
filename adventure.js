@@ -150,7 +150,7 @@ function start(){
     veranderbuttonText("links", "rechts", "stop")
     verandertitel("het bos");
     veranderBackground("bos");
-    veranderdescriptionText("Het bos ziet er prachtig uit, een aantal bomen naast een pad en wat stenen op de");
+    veranderdescriptionText("Het bos ziet er prachtig uit, een aantal bomen naast een pad en wat stenen op de weg");
     knoppendisplay("block", "block", "none");
     if(itemsgespawned == "false"){
         VeranderObject("kleinesleutel", "20px", "20px")

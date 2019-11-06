@@ -5,7 +5,7 @@ html {
     color: black;
     text-align: center;
   }
-  
+
   #button1, #button2, #button3 {
     margin: 15px;
     width: 150px;
@@ -33,7 +33,7 @@ html {
   }
   
   #description {
-    font-size: 20px;
+    font-size: 22px;
     font-weight: bold;
     padding: 10px;
   }
